@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar'; // Import Navbar component
+import Homepage from './components/Homepage';
+import ListPage from './components/ListPage';
+import DetailsPage from './components/DetailsPage';
+import DeletePage from './components/DeletePage';
+import AddEditPage from './components/AddEditPage';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Navbar /> {/* Render the Navbar */}
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/students" element={<ListPage />} />
+        <Route path="/students/add" element={<AddEditPage />} />
+        <Route path="/students/edit/:id" element={<AddEditPage />} />
+        <Route path="/students/:id" element={<DetailsPage />} />
+        <Route path="/students/delete/:id" element={<DeletePage />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
+
